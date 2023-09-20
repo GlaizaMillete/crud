@@ -1,0 +1,7 @@
+.btn{
+    width: -webkit-fill-available;
+    padding: 0;
+    margin-right: 1rem;
+    color: black;
+    border-color: black;
+}
