@@ -13,10 +13,10 @@ export class PostService {
         getPost(){
             return this.listofPosts;
         }
-        deleteButton(index: number){
+        deletePost(index: number){
             this.listofPosts.splice(index, 1)
         }
-        addButton(post: Post){
+        addPost(post: Post){
             this.listofPosts.push(post);
         }
         updatePost(index: number, post: Post){

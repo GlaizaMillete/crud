@@ -1,8 +1,13 @@
 form {
-    margin-top: 5rem;
+    margin-top: 1rem;
+    padding: 1rem;
 }
 
 .form-row {
-    display: flex;
+    display: block;
     gap: 1rem;
+}
+
+input.ng-invalid.ng-touched, textarea.ng-invalid{
+    border: 2px solid red;
 }

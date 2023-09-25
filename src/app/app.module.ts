@@ -8,7 +8,7 @@ import { AuthComponent } from './auth/auth.component';
 import { PostEditComponent } from './post-edit/post-edit.component';
 import { Routes } from '@angular/router';
 import { RouterModule } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -31,7 +31,8 @@ const routes: Routes = [
   imports: [
     BrowserModule,
     FormsModule,
-    RouterModule.forRoot(routes) // Add routes to the app 
+    RouterModule.forRoot(routes), // Add routes to the app 
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
