@@ -5,12 +5,12 @@
     color: black;
     border: none;
     /* font-weight: bold; */
-    background-color: none;
-    transition: transform 1ms ease-in-out;
+    background-color: transparent;
+    /* transition: transform 1000ms ease-in-out; */
     }
     .btn:hover {
         color: white;
-        /* transition: 1000ms ease-in-out; */
+        transition: 500ms ease-in-out;
         background-color: transparent !important;
     }
     .btn:not(:hover) {
@@ -24,7 +24,7 @@
     }
     .nav-link.active:hover, .nav-link:hover {
         color: white;
-        /* transition: 500ms ease-in-out; */
+        transition: 500ms ease-in-out;
     }
 
 .navbar-brand {

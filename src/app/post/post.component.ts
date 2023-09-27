@@ -20,6 +20,6 @@ export class PostComponent implements OnInit {
     console.log(this.post);
   }
   delete(){
-    this.postService.deletePost(this.index);
+    this.postService.deleteButton(this.index);
   }
 }

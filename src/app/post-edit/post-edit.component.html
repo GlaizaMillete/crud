@@ -10,14 +10,14 @@
         <div class="form-row">
           <div class="col-md-4 mb-3">
             <label for="validationCustom01">Title</label>
-            <input type="text" class="form-control" id="validationCustom01" placeholder="First name" value="Title" formControlName="title" required>
+            <input type="text" class="form-control" id="validationCustom01" placeholder="Title" value="Title" formControlName="title" required>
             <div class="valid-feedback">
               Looks good!
             </div>
           </div>
           <div class="col-md-4 mb-3">
             <label for="validationCustom02">Image Path</label>
-            <input type="text" class="form-control" id="validationCustom02" placeholder="Last name" value="Path/Img" formControlName="imgPath" required>
+            <input type="text" class="form-control" id="validationCustom02" placeholder="Image Path" value="Path/Img" formControlName="imgPath" required>
             <img src="{{ form.value.imgPath }}" alt="">
             <div class="valid-feedback">
               Looks good!
@@ -46,14 +46,14 @@
           </div>
           <div class="col-md-3 mb-3">
             <label for="validationCustom04">Author</label>
-            <input type="text" class="form-control" id="validationCustom04" placeholder="Author Name" required>
+            <input type="text" class="form-control" id="validationCustom04" formControlName="author" [value]="form.value.author" placeholder="Author" required>
             <div class="invalid-feedback">
               Please provide a valid state.
             </div>
           </div>
           <div class="col-md-3 mb-3">
             <label for="validationCustom05">Date Created</label>
-            <input type="date" class="form-control" id="validationCustom05" placeholder="Zip" required>
+            <input type="date" class="form-control" id="validationCustom05" placeholder="Date Today" required>
             <div class="invalid-feedback">
               Please provide a valid zip.
             </div>
@@ -61,7 +61,7 @@
         </div>
         <div class="form-group">
         <br><br><br><br>
-          <div class="form-check">
+          <!-- <div class="form-check">
             <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
             <label class="form-check-label" for="invalidCheck">
               Agree to terms and conditions
@@ -69,11 +69,11 @@
             <div class="invalid-feedback">
               You must agree before submitting.
             </div>
-          </div>
+          </div> -->
         </div>
-        <br>
         <button class="btn btn-primary" type="submit">Submit form</button>
-        <button type="btn btn-danger" type="reset" >Clear</button>
+        &nbsp;&nbsp;&nbsp;
+        <button class="btn btn-danger" type="reset" >Clear</button>
       </form>
       
       <script>
