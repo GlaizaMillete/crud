@@ -13,7 +13,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 const routes: Routes = [
   { path: '', redirectTo: 'post-list', pathMatch: 'full' },
-  { path: 'post-edit', component: PostEditComponent },
+  { path: 'post-edit/:index', component: PostEditComponent },
   { path: 'post-list', component: PostListComponent },
   { path: 'post-add', component: PostEditComponent },
   { path: 'authentication', component: AuthComponent }

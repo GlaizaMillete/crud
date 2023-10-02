@@ -4,8 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    
 </head>
 <body>
+  <br><br>
+  <h3 *ngIf="editMode==false">Create Post</h3>
+  <h3 *ngIf="editMode==true">Edit Mode</h3>
     <form class="needs-validation" (ngSubmit)="onSubmit()" [formGroup]="form" >
         <div class="form-row">
           <div class="col-md-4 mb-3">

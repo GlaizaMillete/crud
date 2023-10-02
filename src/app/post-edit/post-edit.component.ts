@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { PostService } from '../post.service';
 import { Post } from '../post.model';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 
 
 @Component({
@@ -12,15 +12,38 @@ import { Router } from '@angular/router';
 })
 export class PostEditComponent implements OnInit {
   form!: FormGroup;
-  constructor(private postService: PostService, private router: Router) {
+  index: number = 0;
+  editMode = false;
+  constructor(private postService: PostService, private router: Router, private actRoute: ActivatedRoute) {
   }
 
 
   ngOnInit(): void {
+
+    let editTitle = '';
+    let editDescription = '';
+    let editImgPath = '';
+
+    this.actRoute.params.subscribe((params: Params) => {
+        if(params['index']) {
+          console.log(params['index']);
+          this.index = params['index'];
+
+        const editPost = this.postService.getSpecPost(this.index);
+
+        editTitle = editPost.title;
+        editDescription = editPost.description;
+        editImgPath = editPost.imgPath;
+
+        this.editMode =true;
+        }
+      }
+    )
+
     this.form = new FormGroup({
-      title : new FormControl(null, [Validators.required]),
-      imgPath: new FormControl(null, [Validators.required]),
-      description: new FormControl(null, [Validators.required]),
+      title : new FormControl(editTitle, [Validators.required]),
+      imgPath: new FormControl(editImgPath, [Validators.required]),
+      description: new FormControl(editDescription, [Validators.required]),
       author: new FormControl('jade', [Validators.required])
     });
   }
@@ -33,10 +56,17 @@ export class PostEditComponent implements OnInit {
       const author = this.form.value.author;
 
 
-    const post: Post = new Post(title, imgPath, description, author , new Date()
-    );
+      const post: Post = new Post(title, imgPath, description, author , new Date()
+      );
 
-    this.postService.addPost(post)
+    if(this.editMode==false){
+      this.postService.addPost(post)
+    }
+    else{
+      this.postService.updatePost(this.index, post)
+    }
+
+   
 
     this.router.navigate(['post-list']);
     } else {
