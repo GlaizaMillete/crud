@@ -60,10 +60,10 @@ export class PostEditComponent implements OnInit {
       );
 
     if(this.editMode==false){
-      this.postService.addPost(post)
+      this.postService.addPost(post) //maga add digdi//
     }
     else{
-      this.postService.updatePost(this.index, post)
+      this.postService.updatePost(this.index, post) //uni man maga update//
     }
 
    
