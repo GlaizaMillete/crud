@@ -9,12 +9,14 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./post.component.css']
 })
 export class PostComponent implements OnInit {
+
   
   memberName = "Jade";
   constructor(private postService: PostService, private router: Router, private actRoute: ActivatedRoute){}
 
   @Input() index: number = 0;
   @Input() post?: Post;
+  newComment: string = '';
 
 
   ngOnInit(): void {
@@ -25,5 +27,12 @@ export class PostComponent implements OnInit {
   }
   onEdit(){
     this.router.navigate(['/post-edit', this.index]);
+  }
+  onClick() {
+    this.postService.likePost(this.index);
+    }
+  addComment(comment: string) {
+    this.postService.addComment(this.index, comment);
+    this.newComment = '';
   }
 }

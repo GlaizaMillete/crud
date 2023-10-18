@@ -54,10 +54,10 @@ export class PostEditComponent implements OnInit {
       const imgPath = this.form.value.imgPath;
       const description = this.form.value.description;
       const author = this.form.value.author;
+      const numberoflikes = this.form.value.numberOfLikes;
 
 
-      const post: Post = new Post(title, imgPath, description, author , new Date()
-      );
+      const post: Post = new Post(title, imgPath, description, author , new Date(), numberoflikes, []);
 
     if(this.editMode==false){
       this.postService.addPost(post) //maga add digdi//

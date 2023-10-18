@@ -5,3 +5,7 @@
 h3 {
     text-align: center;
 }
+
+.small-date {
+    font-size: 0.6em;
+}
