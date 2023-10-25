@@ -13,7 +13,7 @@
 
 <h5 style="text-align: left;margin-top: 1rem;">Comments</h5>
 <div *ngFor="let comment of post?.comments" style="margin-left: 1rem;">
-    <p><i class="fa-solid fa-user"></i> {{comment.text}} <small class="small-date">{{comment.timestamp | date:'short'}}</small></p>
+    <p><i class="bi bi-person-fill"></i> {{comment.text}} <small class="small-date">{{comment.timestamp | date:'short'}}</small></p>
 </div>
 
 <div style="margin: 1rem;margin-top: 1rem;gap: 0.5rem;display: flex;">

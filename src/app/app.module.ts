@@ -1,13 +1,16 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { PostEditComponent } from './post-edit/post-edit.component';
+import { Routes, RouterModule } from '@angular/router';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { PostComponent } from './post/post.component';
 import { PostListComponent } from './post-list/post-list.component';
 import { AuthComponent } from './auth/auth.component';
-import { PostEditComponent } from './post-edit/post-edit.component';
-import { Routes, RouterModule } from '@angular/router';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 
 
 
@@ -31,7 +34,8 @@ const routes: Routes = [
     BrowserModule,
     FormsModule,
     RouterModule.forRoot(routes), // Add routes to the app 
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
