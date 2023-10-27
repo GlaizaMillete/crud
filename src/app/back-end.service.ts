@@ -9,25 +9,26 @@ import { tap } from 'rxjs';
 })
 export class BackEndService {
 
-  constructor(private postService:PostService, private http:HttpClient) { }
+  constructor(private postService: PostService, private http: HttpClient) { }
 
 
 
   saveData() {
-    const listOfPost: Post[]=this.postService.getPost();
-    this.http.put('https://jadecc105-default-rtdb.asia-southeast1.firebasedatabase.app/posts.json', listOfPost)
-    .subscribe((res)=>{
-      console.log(res);
-    })
+    const listOfPost: Post[] = this.postService.getPost();
+    this.http.put('https://cc105-jade-default-rtdb.asia-southeast1.firebasedatabase.app/posts.json', listOfPost)
+      .subscribe((res) => {
+        console.log(res);
+      })
   }
 
-  fetchData(){
-    this.http.get<Post[]>('https://jadecc105-default-rtdb.asia-southeast1.firebasedatabase.app/posts.json')
-    .pipe(tap((listOfPost: Post[])=> {
-      console.log(listOfPost)
-      this.postService.setPost(listOfPost);
-    })
-    ).subscribe()
+  fetchData() {
+    return this.http.get<Post[]>('https://cc105-jade-default-rtdb.asia-southeast1.firebasedatabase.app/posts.json')
+      .pipe(tap((listOfPost: Post[]) => {
+        console.log(listOfPost)
+        this.postService.setPost(listOfPost);
+        this.postService.listChangeEvent.emit(listOfPost); // Emit the event here
+      })
+      ).subscribe()
   }
 
 }
