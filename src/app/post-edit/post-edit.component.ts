@@ -56,23 +56,25 @@ export class PostEditComponent implements OnInit {
       const description = this.form.value.description;
       const author = this.form.value.author;
       const numberoflikes = this.form.value.numberOfLikes;
-
-
-      const post: Post = new Post(title, imgPath, description, author, new Date(), numberoflikes, []);
-
+  
+      let comments: { comment: string; date: Date; }[] | undefined = [];
+      if (this.editMode) {
+        const originalPost = this.postService.getSpecPost(this.index);
+        comments = originalPost.comments;
+      }
+  
+      const post: Post = new Post(title, imgPath, description, author, new Date(), numberoflikes, comments);
+  
       if (this.editMode == false) {
         this.postService.addPost(post) //maga add digdi//
       }
       else {
         this.postService.updatePost(this.index, post) //uni man maga update//
       }
-
-
-
+  
       this.router.navigate(['post-list']);
     } else {
       // Handle form validation errors
     }
-
   }
 }
