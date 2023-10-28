@@ -9,11 +9,13 @@
 <p>{{post?.author}}</p>
 <p>{{post?.dateCreated}}</p>
 
-<button class="btn btn-success" (click)="onClick()"><i class="fa fa-thumbs-up"></i> {{post?.numberOfLikes}}</button> | <button class="btn btn-primary " (click)="onEdit()">Edit</button> | <button class="btn btn-danger" (click)="delete()">Delete</button>
+<button class="btn btn-success" (click)="onClick()"><i class="fa fa-thumbs-up"></i> {{post?.numberOfLikes}}</button> |
+<button class="btn btn-primary " (click)="onEdit()">Edit</button> | <button class="btn btn-danger"
+    (click)="delete()">Delete</button>
 
 <h5 style="text-align: left;margin-top: 1rem;">Comments</h5>
 <div *ngFor="let comment of post?.comments" style="margin-left: 1rem;">
-    <p><i class="bi bi-person-fill"></i> {{comment.text}} <small class="small-date">{{comment.timestamp | date:'short'}}</small></p>
+    <p>{{comment}}</p>
 </div>
 
 <div style="margin: 1rem;margin-top: 1rem;gap: 0.5rem;display: flex;">
@@ -21,4 +23,5 @@
     <button class="btn btn-primary" (click)="addComment(newComment)">Add Comment</button>
 </div>
 
-<br><br><hr>
+<br><br>
+<hr>

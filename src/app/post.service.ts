@@ -33,9 +33,9 @@ export class PostService {
             return this.listofPosts[index];
         }
         likePost(index:number) {
-            this.listofPosts[index].numberOfLikes += 1;
+            this.listofPosts[index].numberOfLikes++;
         }
         addComment(index: number, comment: string) {
-            this.listofPosts[index].comments.push({ text: comment, timestamp: new Date() });
+            this.listofPosts[index].comments.push(comment);
         }
 }
