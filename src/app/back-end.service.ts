@@ -25,6 +25,12 @@ export class BackEndService {
     this.http.get<Post[]>('https://cc105-jade-default-rtdb.asia-southeast1.firebasedatabase.app/posts.json')
       .pipe(tap((listOfPost: Post[]) => {
         console.log(listOfPost)
+        // Ensure that the comments field is an array for each post
+        listOfPost.forEach(post => {
+          if (!Array.isArray(post.comments)) {
+            post.comments = [];
+          }
+        });
         this.postService.setPost(listOfPost);
         this.postService.listChangeEvent.emit(listOfPost); // Emit the event here
       })
