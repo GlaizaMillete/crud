@@ -22,7 +22,7 @@ export class BackEndService {
   }
 
   fetchData() {
-    return this.http.get<Post[]>('https://cc105-jade-default-rtdb.asia-southeast1.firebasedatabase.app/posts.json')
+    this.http.get<Post[]>('https://cc105-jade-default-rtdb.asia-southeast1.firebasedatabase.app/posts.json')
       .pipe(tap((listOfPost: Post[]) => {
         console.log(listOfPost)
         this.postService.setPost(listOfPost);
