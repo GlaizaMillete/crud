@@ -25,9 +25,9 @@ export class PostEditComponent implements OnInit {
     let editImgPath = '';
 
     this.actRoute.params.subscribe((params: Params) => {
-        if(params['index']) {
-          console.log(params['index']);
-          this.index = params['index'];
+      if (params['index']) {
+        console.log(params['index']);
+        this.index = params['index'];
 
         const editPost = this.postService.getSpecPost(this.index);
 
@@ -35,16 +35,17 @@ export class PostEditComponent implements OnInit {
         editDescription = editPost.description;
         editImgPath = editPost.imgPath;
 
-        this.editMode =true;
-        }
+        this.editMode = true;
       }
+    }
     )
 
     this.form = new FormGroup({
-      title : new FormControl(editTitle, [Validators.required]),
+      title: new FormControl(editTitle, [Validators.required]),
       imgPath: new FormControl(editImgPath, [Validators.required]),
       description: new FormControl(editDescription, [Validators.required]),
-      author: new FormControl('jade', [Validators.required])
+      author: new FormControl('Jade Raposa', [Validators.required]),
+      numberOfLikes: new FormControl(0) // Add this line
     });
   }
 
@@ -57,18 +58,18 @@ export class PostEditComponent implements OnInit {
       const numberoflikes = this.form.value.numberOfLikes;
 
 
-      const post: Post = new Post(title, imgPath, description, author , new Date(), numberoflikes, []);
+      const post: Post = new Post(title, imgPath, description, author, new Date(), numberoflikes, []);
 
-    if(this.editMode==false){
-      this.postService.addPost(post) //maga add digdi//
-    }
-    else{
-      this.postService.updatePost(this.index, post) //uni man maga update//
-    }
+      if (this.editMode == false) {
+        this.postService.addPost(post) //maga add digdi//
+      }
+      else {
+        this.postService.updatePost(this.index, post) //uni man maga update//
+      }
 
-   
 
-    this.router.navigate(['post-list']);
+
+      this.router.navigate(['post-list']);
     } else {
       // Handle form validation errors
     }

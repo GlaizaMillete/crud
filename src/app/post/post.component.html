@@ -9,7 +9,7 @@
 <p>{{post?.author}}</p>
 <p>{{post?.dateCreated}}</p>
 
-<button class="btn btn-success" (click)="onClick()"><i class="fa fa-thumbs-up"></i> {{post?.numberOfLikes}}</button> |
+<button class="btn btn-success" (click)="onClick()"><i class="fa fa-thumbs-up"></i> <span *ngIf="post && post.numberOfLikes > 0"> {{post.numberOfLikes}}</span></button> |
 <button class="btn btn-primary " (click)="onEdit()">Edit</button> | <button class="btn btn-danger"
     (click)="delete()">Delete</button>
 
