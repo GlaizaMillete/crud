@@ -23,6 +23,7 @@ export class PostEditComponent implements OnInit {
     let editTitle = '';
     let editDescription = '';
     let editImgPath = '';
+    let editAuthor ='';
 
     this.actRoute.params.subscribe((params: Params) => {
       if (params['index']) {
@@ -34,6 +35,7 @@ export class PostEditComponent implements OnInit {
         editTitle = editPost.title;
         editDescription = editPost.description;
         editImgPath = editPost.imgPath;
+        editAuthor = editPost.author;
 
         this.editMode = true;
       }
@@ -44,8 +46,8 @@ export class PostEditComponent implements OnInit {
       title: new FormControl(editTitle, [Validators.required]),
       imgPath: new FormControl(editImgPath, [Validators.required]),
       description: new FormControl(editDescription, [Validators.required]),
-      author: new FormControl('Jade Raposa', [Validators.required]),
-      numberOfLikes: new FormControl(0) // Add this line
+      author: new FormControl(editAuthor, [Validators.required]),
+      numberOfLikes: new FormControl(0) // Add this line for the new post to have 0 likes and add when button is clicked
     });
   }
 
@@ -55,23 +57,25 @@ export class PostEditComponent implements OnInit {
       const imgPath = this.form.value.imgPath;
       const description = this.form.value.description;
       const author = this.form.value.author;
-      const numberoflikes = this.form.value.numberOfLikes;
-  
-      let comments: { comment: string; date: Date; }[] | undefined = [];
+      const numberOfLikes = this.form.value.numberOfLikes;
+
+      let comments: { comment: string; date: Date }[] | undefined = [];
+      let date: Date = new Date(); // set default date to current date
+
       if (this.editMode) {
         const originalPost = this.postService.getSpecPost(this.index);
         comments = originalPost.comments;
+        date = originalPost.dateCreated; // set date to original post's date
       }
-  
-      const post: Post = new Post(title, imgPath, description, author, new Date(), numberoflikes, comments);
-  
+
+      const post: Post = new Post(title, imgPath, description, author, date, numberOfLikes, comments);
+
       if (this.editMode == false) {
-        this.postService.addPost(post) //maga add digdi//
+        this.postService.addPost(post);
+      } else {
+        this.postService.updatePost(this.index, post);
       }
-      else {
-        this.postService.updatePost(this.index, post) //uni man maga update//
-      }
-  
+
       this.router.navigate(['post-list']);
     } else {
       // Handle form validation errors
