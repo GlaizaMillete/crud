@@ -13,7 +13,7 @@
 <button class="btn btn-primary " (click)="onEdit()">Edit</button> | <button class="btn btn-danger"
     (click)="delete()">Delete</button>
 
-<h5 style="text-align: left;margin-top: 1rem;">Comments</h5>
+<h5 style="text-align: left;margin-top: 1rem;margin-bottom: 1rem;">Comments</h5>
 <div *ngFor="let comment of post?.comments" style="margin-left: 1rem;">
     <p><i class="fa fa-user-circle fa-lg" aria-hidden="true"></i>&nbsp;&nbsp;{{comment.comment}} <small style="opacity: 0.4;font-size: x-small;">{{comment.date | date:'short'}}</small></p>
 </div>
