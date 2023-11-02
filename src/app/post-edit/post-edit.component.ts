@@ -23,7 +23,8 @@ export class PostEditComponent implements OnInit {
     let editTitle = '';
     let editDescription = '';
     let editImgPath = '';
-    let editAuthor ='';
+    let editAuthor = '';
+    let editDate = '';
 
     this.actRoute.params.subscribe((params: Params) => {
       if (params['index']) {
@@ -36,6 +37,7 @@ export class PostEditComponent implements OnInit {
         editDescription = editPost.description;
         editImgPath = editPost.imgPath;
         editAuthor = editPost.author;
+        editDate = editPost.dateCreated.toISOString(); // convert Date object to string
 
         this.editMode = true;
       }
@@ -47,7 +49,8 @@ export class PostEditComponent implements OnInit {
       imgPath: new FormControl(editImgPath, [Validators.required]),
       description: new FormControl(editDescription, [Validators.required]),
       author: new FormControl(editAuthor, [Validators.required]),
-      numberOfLikes: new FormControl(0) // Add this line for the new post to have 0 likes and add when button is clicked
+      numberOfLikes: new FormControl(0), // Add this line for the new post to have 0 likes and add when button is clicked
+      date: new FormControl(editDate),
     });
   }
 
@@ -58,24 +61,32 @@ export class PostEditComponent implements OnInit {
       const description = this.form.value.description;
       const author = this.form.value.author;
       const numberOfLikes = this.form.value.numberOfLikes;
-
+  
       let comments: { comment: string; date: Date }[] | undefined = [];
       let date: Date = new Date(); // set default date to current date
-
+  
       if (this.editMode) {
         const originalPost = this.postService.getSpecPost(this.index);
         comments = originalPost.comments;
-        date = originalPost.dateCreated; // set date to original post's date
+        if (this.form.value.date != '' && !isNaN(Date.parse(this.form.value.date))) {
+          date = new Date(this.form.value.date); // set date to the new date
+        } else {
+          date = originalPost.dateCreated; // set date to original post's date
+        }
+      } else {
+        if (this.form.value.date != '' && !isNaN(Date.parse(this.form.value.date))) {
+          date = new Date(this.form.value.date); // set date to the new date
+        }
       }
-
+  
       const post: Post = new Post(title, imgPath, description, author, date, numberOfLikes, comments);
-
+  
       if (this.editMode == false) {
         this.postService.addPost(post);
       } else {
         this.postService.updatePost(this.index, post);
       }
-
+  
       this.router.navigate(['post-list']);
     } else {
       // Handle form validation errors
