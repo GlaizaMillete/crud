@@ -7,7 +7,6 @@
     
 </head>
 <body>
-  <br><br>
   <h3 *ngIf="editMode==false">Create Post</h3>
   <h3 *ngIf="editMode==true">Edit Mode</h3>
     <form class="needs-validation" (ngSubmit)="onSubmit()" [formGroup]="form" >
@@ -21,8 +20,8 @@
           </div>
           <div class="col-md-4 mb-3">
             <label for="validationCustom02">Image Path</label>
-            <input type="text" class="form-control" id="validationCustom02" placeholder="Image Path" value="Path/Img" formControlName="imgPath" required>
-            <img src="{{ form.value.imgPath }}" alt="">
+            <input type="text" class="form-control mb-3" id="validationCustom02" placeholder="Image Path" value="Path/Img" formControlName="imgPath" required>
+            <img *ngIf="form.value.imgPath" src="{{ form.value.imgPath }}" alt="" width="1010" height="524">
             <div class="valid-feedback">
               Looks good!
             </div>
