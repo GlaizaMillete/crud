@@ -24,7 +24,8 @@ export class PostEditComponent implements OnInit {
     let editDescription = '';
     let editImgPath = '';
     let editAuthor = '';
-    let editDate = '';
+    let editDate = new Date().toISOString(); // set default date to current date
+  
 
     this.actRoute.params.subscribe((params: Params) => {
       if (params['index']) {
