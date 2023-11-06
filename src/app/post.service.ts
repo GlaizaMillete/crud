@@ -1,5 +1,6 @@
 import { EventEmitter, Injectable } from '@angular/core';
 import { Post } from './post.model';
+import { Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class PostService {
@@ -13,8 +14,8 @@ export class PostService {
         //   new Date(),4,[])
     ];
 
-    getPost() {
-        return this.listofPosts;
+    getPost(): Observable<Post[]> {
+        return this.listChangeEvent;
     }
     setPost(listofPosts: Post[]) {
         this.listofPosts = listofPosts;
